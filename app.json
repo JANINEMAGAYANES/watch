@@ -1,0 +1,12 @@
+{
+  "name": "watch",
+  "displayName": "watch",
+  "expo": {
+    "name": "watch",
+    "slug": "watch",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
