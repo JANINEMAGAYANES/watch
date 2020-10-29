@@ -19,29 +19,19 @@ const initialState = {
   title: "",
   uri: "https://images-eu.ssl-images-amazon.com/images/I/91Jf7CamLbL.png",
   desc: "",
+  stat: "",
 };
 
 @observer
 export default class App extends Component {
   state = initialState;
-  onChangeText(key, value) {
-    this.setState({
-      [key]: value,
-    });
-  }
-  toggleSelected(movie) {
-    movie.toggleSelected();
-  }
-  toggleFocused(movie) {
-    movie.toggleFocused();
-  }
-
   render() {
     const { movies } = MovieStore;
     const [background, setBackground] = useState({
-      uri: "https://images-eu.ssl-images-amazon.com/images/I/91Jf7CamLbL.png",
+      uri: "",
       title: "",
       desc: "",
+      stat: "",
     });
     const carouselRef = useRef(null);
     const { width, height } = Dimensions.get("window");
@@ -51,8 +41,7 @@ export default class App extends Component {
           <View style={{ ...StyleSheet.absoluteFill, backgroundColor: "#000" }}>
             <ImageBackground
               source={{
-                uri:
-                  "https://images-eu.ssl-images-amazon.com/images/I/91Jf7CamLbL.png",
+                uri: this.state.uri,
               }}
               style={styles.ImageBg}
               blurRadius={10}
@@ -67,16 +56,10 @@ export default class App extends Component {
                   marginVertical: 10,
                 }}
                 onPress={() => {
-                  setBackground({
-                    uri:
-                      "https://images-eu.ssl-images-amazon.com/images/I/91Jf7CamLbL.png",
-                    name: "",
-                    stat: "",
-                    desc: "",
-                  });
+                  setBackground(this.state);
                 }}
               >
-                Back{" "}
+                Back
               </Text>
 
               <View style={styles.carouselContainerView}>
@@ -90,15 +73,15 @@ export default class App extends Component {
                           onPress={() => {
                             carouselRef.current.scrollToIndex(index);
                             setBackground({
-                              uri: item.image,
-                              name: item.title,
+                              uri: item.uri,
+                              title: item.title,
                               stat: item.released,
                               desc: item.desc,
                             });
                           }}
                         >
                           <Image
-                            source={{ uri: item.image }}
+                            source={{ uri: item.uri }}
                             style={styles.carouselImage}
                           />
                           <Text style={styles.carouselText}>{item.title}</Text>
