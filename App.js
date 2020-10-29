@@ -41,7 +41,7 @@ export default class App extends Component {
           <View style={{ ...StyleSheet.absoluteFill, backgroundColor: "#000" }}>
             <ImageBackground
               source={{
-                uri: this.state.uri,
+                uri: background.uri,
               }}
               style={styles.ImageBg}
               blurRadius={10}
